@@ -1,0 +1,15 @@
+{% if user.is_authenticated %}  
+	<form action="{% comment_form_target %}" method="post">   
+		 <p>
+			 <label>Post a comment:</label><br />    
+			 <textarea name="comment" rows="5" cols="20"></textarea>
+		 </p>    
+		 <input type="hidden" name="options" value="{{ options }}" />    
+		 <input type="hidden" name="target" value="{{ target }}" />   
+		 <input type="submit" name="post" value="submit comment" />  
+	 </form> 
+ {% else %}  
+ <p>
+ Please <a href="/login/">Log In</a> to post comments.
+ </p> 
+ {% endif %} 

@@ -1,0 +1,84 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<!--IE compatible-->
+   		<meta name="viewport" content="width=device-width, intial=scale=1">
+		<title> Bookmarks-Fraternity |
+			{% block title %}{% endblock %}
+		</title>
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+		<link rel="stylesheet" href="{% static 'css/bookmarks.css' %}">
+		<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+		
+		{% block external%} {% endblock %}
+	</head>
+
+	<body>
+		<div id="navigation" class="navbar navbar-default " role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+	                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="ex-navigation">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+           		</div>
+
+				<div class="collapse navbar-collapse" id="ex-navigation">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/">Home</a></li> 
+						<li><a href="/popular/">Popular</a></li> 
+						<li><a href="/tag/">Tag-Cloud</a></li> 
+						{% if user.is_authenticated %}
+
+						<li><a href="/save/">Submit</a></li> 
+						<li><a href="/search/">Search</a></li>
+						<li><a href="/user/{{user.username}}/">{{ user.username }}</a></li>
+						<li><a href="/logout">Logout</a></li>
+					
+						{% else %}
+						<li><a href="/login/">Login</a></li>
+						<li><a href="/register/">Register</a></li>
+						{% endif %}
+					</ul>
+				</div>	
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<h1>
+				{% block head %}{% endblock %}
+			</h1>
+			 {% if messages %}    
+			<ul class="messages">      
+			 	{% for message in messages %}        
+			 	<li {% if messages.tags %} class="{{ message.tags }}" {% endif %}>
+			 		{{ message }}
+			 	</li>     
+			 	{% endfor %}    
+			</ul>  
+			{% endif %}
+
+			<div class="container-content">
+			
+				{% block content %}{% endblock %}
+		
+			</div><br>
+			
+
+		</div>
+		<!--Footer-->
+		<nav class="navbar	navbar-default	navbar-fixed-bottom"	role="navigation">
+			<p	class="navbar-text	pull-right col-md-offset-5 col-md-7">
+				Copyright &copy; 2018 Bookmarks-Fraternity. Designed by <a href="">Kiama</a>
+			</p>
+		</nav>
+	
+		
+	<script type="text/javascript" href="{% static 'js/jquery.js' %}" ></script>
+	</body>
+</html>

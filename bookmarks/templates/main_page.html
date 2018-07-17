@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block title %} Home-Page {% endblock %}
+
+
+{% block external %}  
+	<link rel="alternate" type="application/rss+xml" title="Django Bookmarks | Recent Bookmarks" href="/feeds/recent/" /> 
+{% endblock %} 
+
+{% block content %}
+	<!--Header-->
+	<header class="container-fluid">
+		<div class="row">
+			<h1>Welcome to Bookmarks-Fraternity </h1>
+			{% if user.username %}
+			<p>
+				Welcome <strong><i>{{ user.username }}!</i></strong>
+				Here you can store and share bookmarks!
+			</p>
+			{% else %}
+			<p>Welcome anonymous user!
+				You need to <a href="/login/">login</a>
+				before you can store and share bookmarks.
+			</p>
+			{% endif %}  
+    	</div>
+	</header>
+	<div class="container-content">
+		<h2>Bookmarks Shared By Users</h2>
+		{% include "shared_bookmark_list.html" %}
+		{% endblock %}
+	</div>
+	

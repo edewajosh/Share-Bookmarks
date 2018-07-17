@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}User Registration{% endblock %}
+{% block head %}User Registration{% endblock %}
+
+{% block content %}
+	<div class="container-content" id="register">
+		<form class="form-signin" method="post" action=".">
+			{{ form.as_p }}
+			<input class="btn btn-block btn-primary" type="submit" value="Register" />
+			<input class="form-control" type="hidden" name="next" value="/" />
+		</form>
+		
+	</div>
+	
+{% endblock %}
